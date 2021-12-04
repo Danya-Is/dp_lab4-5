@@ -11,6 +11,6 @@ public class JSTesterApp {
         ActorSystem actorSystem = ActorSystem.create("lab4");
         final Http http = Http.get(actorSystem);
         final ActorMaterializer materializer = ActorMaterializer.create(actorSystem);
-        
+
     }
 }
