@@ -1,8 +1,8 @@
 package main.java.ru.bmstu.lab4;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PostRequest {
-    @JsonFormat("packageID")
+    @JsonProperty("packageID")
     private int packageID;
 }
