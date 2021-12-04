@@ -1,2 +1,4 @@
-package main.java.ru.bmstu.lab4;public class JSTesterApp {
+package main.java.ru.bmstu.lab4;
+
+public class JSTesterApp {
 }
