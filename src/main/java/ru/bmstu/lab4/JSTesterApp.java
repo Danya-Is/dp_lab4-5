@@ -18,6 +18,7 @@ import main.java.ru.bmstu.lab4.Messages.PostRequest;
 import scala.concurrent.Future;
 
 import java.time.Duration;
+import java.util.concurrent.CompletionStage;
 
 import static akka.http.javadsl.server.Directives.*;
 
@@ -35,7 +36,7 @@ public class JSTesterApp {
         final ActorMaterializer materializer = ActorMaterializer.create(actorSystem);
         JSTesterApp instance = new JSTesterApp(actorSystem.actorOf(Props.create(RouterActor.class)));
         Flow<HttpRequest, HttpResponse, NotUsed> flow = instance.createRoute().flow(actorSystem, materializer);
-        
+        CompletionStage<>
 
     }
 
