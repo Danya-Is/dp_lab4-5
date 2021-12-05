@@ -17,6 +17,8 @@ public class RouterActor extends AbstractActor {
 
         ArrayList<Routee> routees = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
+            ActorRef executor = getContext().actorOf(Props.create(ExecuterActor.class));
+            
             routees.add()
         }
     }
