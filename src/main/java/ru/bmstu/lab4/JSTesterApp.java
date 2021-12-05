@@ -27,6 +27,7 @@ public class JSTesterApp {
         return JSTesterApp(
                 get(() -> {
 
-        }))
+        }),
+                post())
     }
 }
