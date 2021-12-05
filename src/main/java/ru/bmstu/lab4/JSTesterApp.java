@@ -40,7 +40,8 @@ public class JSTesterApp {
         Flow<HttpRequest, HttpResponse, NotUsed> flow = instance.createRoute().flow(actorSystem, materializer);
         CompletionStage<ServerBinding> stage = http.bindAndHandle(flow, ConnectHttp.toHost("127.0.0.1", 8000), materializer);
         System.out.println("Listening on :8000...");
-        
+
+        stage.thenCompose()
 
     }
 
