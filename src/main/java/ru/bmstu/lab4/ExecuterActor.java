@@ -9,4 +9,8 @@ public class ExecuterActor extends AbstractActor {
         return ReceiveBuilder.create()
                 .match();
     }
+
+    public void execute(PostRequest msg) {
+        
+    }
 }
