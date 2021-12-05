@@ -1,5 +1,6 @@
 package main.java.ru.bmstu.lab4;
 
+import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
@@ -33,7 +34,8 @@ public class JSTesterApp {
         final Http http = Http.get(actorSystem);
         final ActorMaterializer materializer = ActorMaterializer.create(actorSystem);
         JSTesterApp instance = new JSTesterApp(actorSystem.actorOf(Props.create(RouterActor.class)));
-        Flow<HttpRequest, HttpResponse, >instance.createRoute().flow(actorSystem, materializer);
+        Flow<HttpRequest, HttpResponse, NotUsed> flow = instance.createRoute().flow(actorSystem, materializer);
+        
 
     }
 
