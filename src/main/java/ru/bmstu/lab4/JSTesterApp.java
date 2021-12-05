@@ -6,7 +6,6 @@ import akka.http.javadsl.Http;
 import akka.http.javadsl.server.Route;
 import akka.stream.ActorMaterializer;
 
-import static scala.None.get;
 
 public class JSTesterApp {
 
