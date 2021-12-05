@@ -17,7 +17,7 @@ public class RouterActor extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder.create()
                 .match(PostRequest.class, this::executeTests)
-                .match(GetRequest.class, msg -> storage.tell(msg, ))
+                .match(GetRequest.class, msg -> storage.tell(msg, sender()))
                 .build();
     }
 
