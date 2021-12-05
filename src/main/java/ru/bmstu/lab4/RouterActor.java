@@ -5,6 +5,7 @@ import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.japi.pf.ReceiveBuilder;
 import akka.routing.ActorRefRoutee;
+import akka.routing.BalancingRoutingLogic;
 import akka.routing.Routee;
 import akka.routing.Router;
 
@@ -26,7 +27,7 @@ public class RouterActor extends AbstractActor {
             routees.add(new ActorRefRoutee(executor));
         }
 
-        router = new Router(routees);
+        router = new Router(new BalancingRoutingLogic(), routees);
     }
 
     @Override
@@ -39,7 +40,8 @@ public class RouterActor extends AbstractActor {
 
     private void executeTests(PostRequest msg) {
         for (Test test : msg.getTests()) {
-            sender().tell(new Executed(msg.getPackageID(), msg.getJsScript(), msg.getFunctionName(), test.getExpectedResult(), test.getParams()), self());
+            router.route(new Executed(msg.getPackageID(), msg.getJsScript(), msg.getFunctionName(), test.getExpectedResult(), test.getParams()));
+            sender().tell(, self());
         }
     }
 }
