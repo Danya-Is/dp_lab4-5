@@ -9,7 +9,7 @@ import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.util.Timeout;
 import main.java.ru.bmstu.lab4.Messages.GetRequest;
-import main.java.ru.bmstu.lab4.Messages.Response;
+import main.java.ru.bmstu.lab4.Messages.PostRequest;
 import scala.concurrent.Future;
 
 import java.time.Duration;
@@ -37,6 +37,6 @@ public class JSTesterApp {
                     Future<Object> res = Patterns.ask(router, new GetRequest(Integer.parseInt(id)), Timeout.create(Duration.ofSeconds(5)));
                     return completeOKWithFuture(res, Jackson.marshaller());
                 })),
-                post(() -> entity(Jackson.unmarshaller(Response, ))))
+                post(() -> entity(Jackson.unmarshaller(PostRequest.class), )))
     }
 }
