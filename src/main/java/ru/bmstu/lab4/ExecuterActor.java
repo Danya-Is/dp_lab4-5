@@ -12,13 +12,13 @@ public class ExecuterActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
-                .match();
+                .match(Executed.class, exe);
     }
 
-    public String execute(String script, String functionName, Test test) throws ScriptException, NoSuchMethodException {
+    public String execute(Executed executed) throws ScriptException, NoSuchMethodException {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
-        engine.eval(script);
+        engine.eval(executed.getJsScript());
         Invocable invocable = (Invocable) engine;
-        return invocable.invokeFunction(functionName, test.getParams()).toString();
+        return invocable.invokeFunction(executed.getFunctionName(), executed.getParams()).toString();
     }
 }
