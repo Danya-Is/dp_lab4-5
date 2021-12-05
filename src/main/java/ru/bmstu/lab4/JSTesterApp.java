@@ -25,8 +25,8 @@ public class JSTesterApp {
 
     private Route createRoute() {
         return JSTesterApp(
-                get(() -> {
-                    
+                get(() -> parameter("packageID", (id) => ){
+
                 }),
                 post(() -> {
 
