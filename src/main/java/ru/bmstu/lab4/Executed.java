@@ -7,10 +7,11 @@ public class Executed {
     private final float expectedResult;
     private final int[] params;
 
-    public Executed(int packageID, String jsScript, String functionName, int[] params) {
+    public Executed(int packageID, String jsScript, String functionName, float expectedResult, int[] params) {
         this.packageID = packageID;
         this.jsScript = jsScript;
         this.functionName = functionName;
+        this.expectedResult = expectedResult;
         this.params = params;
     }
 
