@@ -26,7 +26,7 @@ public class RouterActor extends AbstractActor {
             routees.add(new ActorRefRoutee(executor));
         }
 
-        router = 
+        router = new Router(routees);
     }
 
     @Override
