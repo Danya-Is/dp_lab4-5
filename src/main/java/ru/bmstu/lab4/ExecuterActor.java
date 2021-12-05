@@ -2,6 +2,8 @@ package main.java.ru.bmstu.lab4;
 
 import akka.actor.AbstractActor;
 import akka.japi.pf.ReceiveBuilder;
+import main.java.ru.bmstu.lab4.Messages.Executed;
+import main.java.ru.bmstu.lab4.Messages.Result;
 
 import javax.script.Invocable;
 import javax.script.ScriptEngine;

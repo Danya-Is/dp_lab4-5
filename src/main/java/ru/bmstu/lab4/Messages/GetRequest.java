@@ -1,4 +1,4 @@
-package main.java.ru.bmstu.lab4;
+package main.java.ru.bmstu.lab4.Messages;
 
 public class GetRequest {
     private final int packageID;

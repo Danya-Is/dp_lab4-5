@@ -2,6 +2,9 @@ package main.java.ru.bmstu.lab4;
 
 import akka.actor.AbstractActor;
 import akka.japi.pf.ReceiveBuilder;
+import main.java.ru.bmstu.lab4.Messages.GetRequest;
+import main.java.ru.bmstu.lab4.Messages.Response;
+import main.java.ru.bmstu.lab4.Messages.Result;
 
 import java.util.ArrayList;
 import java.util.HashMap;

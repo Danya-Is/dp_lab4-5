@@ -8,6 +8,10 @@ import akka.routing.ActorRefRoutee;
 import akka.routing.BalancingRoutingLogic;
 import akka.routing.Routee;
 import akka.routing.Router;
+import main.java.ru.bmstu.lab4.Messages.Executed;
+import main.java.ru.bmstu.lab4.Messages.GetRequest;
+import main.java.ru.bmstu.lab4.Messages.PostRequest;
+import main.java.ru.bmstu.lab4.Messages.Test;
 
 import java.util.ArrayList;
 
