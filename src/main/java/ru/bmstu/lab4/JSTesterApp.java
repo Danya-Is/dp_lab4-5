@@ -6,6 +6,7 @@ import akka.http.javadsl.Http;
 import akka.http.javadsl.server.Route;
 import akka.stream.ActorMaterializer;
 
+import static akka.http.javadsl.server.Directives.*;
 
 public class JSTesterApp {
 
@@ -25,8 +26,10 @@ public class JSTesterApp {
     private Route createRoute() {
         return JSTesterApp(
                 get(() -> {
+                    
+                }),
+                post(() -> {
 
-        }),
-                post())
+                }))
     }
 }
