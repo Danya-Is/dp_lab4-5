@@ -5,6 +5,7 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.http.javadsl.Http;
+import akka.http.javadsl.ServerBinding;
 import akka.http.javadsl.marshallers.jackson.Jackson;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
@@ -36,7 +37,7 @@ public class JSTesterApp {
         final ActorMaterializer materializer = ActorMaterializer.create(actorSystem);
         JSTesterApp instance = new JSTesterApp(actorSystem.actorOf(Props.create(RouterActor.class)));
         Flow<HttpRequest, HttpResponse, NotUsed> flow = instance.createRoute().flow(actorSystem, materializer);
-        CompletionStage<>
+        CompletionStage<ServerBinding> = http.bindAndHandle(flow, )
 
     }
 
