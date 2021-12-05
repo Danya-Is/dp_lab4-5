@@ -19,4 +19,8 @@ public class Test {
     public int[] getParams() {
         return params;
     }
+
+    public float getExpectedResult() {
+        return expectedResult;
+    }
 }
