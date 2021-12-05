@@ -22,6 +22,6 @@ public class JSTesterApp {
     }
 
     private Route createRoute() {
-        return JSTesterApp()
+        return JSTesterApp(get())
     }
 }
