@@ -1,0 +1,10 @@
+main/java/ru/bmstu/lab4/StorageActor.class
+main/java/ru/bmstu/lab4/Messages/Test.class
+main/java/ru/bmstu/lab4/JSTesterApp.class
+main/java/ru/bmstu/lab4/Messages/Response.class
+main/java/ru/bmstu/lab4/Messages/Executed.class
+main/java/ru/bmstu/lab4/Messages/Result.class
+main/java/ru/bmstu/lab4/Messages/PostRequest.class
+main/java/ru/bmstu/lab4/Messages/GetRequest.class
+main/java/ru/bmstu/lab4/RouterActor.class
+main/java/ru/bmstu/lab4/ExecuterActor.class
