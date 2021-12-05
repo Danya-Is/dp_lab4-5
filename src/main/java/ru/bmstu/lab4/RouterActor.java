@@ -11,6 +11,8 @@ public class RouterActor extends AbstractActor {
 
     public RouterActor() {
         storage = getContext().actorOf(Props.create(StorageActor.class));
+
+        
     }
 
     @Override
