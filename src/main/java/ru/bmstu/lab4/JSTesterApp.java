@@ -30,7 +30,7 @@ public class JSTesterApp {
         final Http http = Http.get(actorSystem);
         final ActorMaterializer materializer = ActorMaterializer.create(actorSystem);
         JSTesterApp instance = new JSTesterApp(actorSystem.actorOf(Props.create(RouterActor.class)));
-        
+        instance.createRoute().flow();
 
     }
 
