@@ -39,7 +39,7 @@ public class JSTesterApp {
                 })),
                 post(() -> entity(Jackson.unmarshaller(PostRequest.class), msg -> {
                     router.tell(msg, ActorRef.noSender());
-                    
-                })))
+                    return complete("OK");
+                })));
     }
 }
