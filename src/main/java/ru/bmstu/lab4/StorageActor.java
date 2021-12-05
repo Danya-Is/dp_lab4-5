@@ -18,7 +18,10 @@ public class StorageActor  extends AbstractActor {
     }
 
     private void addMessage(Result msg) {
-        ArrayList<String>
-        store.put(msg.getPackageID(), msg.getValue());
+        ArrayList<String> results = store.get(msg.getPackageID());
+        if (results == null) {
+            results = new ArrayList<>();
+        }
+        results.add(msg.getValue());
     }
 }
