@@ -15,4 +15,8 @@ public class Test {
         this.expectedResult = expectedResult;
         this.params = params;
     }
+
+    public int[] getParams() {
+        return params;
+    }
 }

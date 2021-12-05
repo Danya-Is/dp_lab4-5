@@ -15,10 +15,10 @@ public class ExecuterActor extends AbstractActor {
                 .match();
     }
 
-    public void execute(PostRequest msg) throws ScriptException {
+    public Object execute(String script, String functionName, Test test) throws ScriptException, NoSuchMethodException {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
-        engine.eval(msg.getJsScript());
+        engine.eval(script);
         Invocable invocable = (Invocable) engine;
-        return invocable.invokeFunction()
+        return invocable.invokeFunction(functionName, test.getParams());
     }
 }
