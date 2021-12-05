@@ -12,7 +12,8 @@ public class ExecuterActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
-                .match(Executed.class, sender().tell());
+                .match(Executed.class, msg -> sender().tell(new Result(msg.getPackageID(), execute(msg)), self()))
+                .build();
     }
 
     public String execute(Executed executed) throws ScriptException, NoSuchMethodException {
