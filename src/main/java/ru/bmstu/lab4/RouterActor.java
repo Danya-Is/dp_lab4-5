@@ -14,11 +14,12 @@ public class RouterActor extends AbstractActor {
 
     public RouterActor() {
         storage = getContext().actorOf(Props.create(StorageActor.class));
+        getContext().watch(storage);
 
         ArrayList<Routee> routees = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             ActorRef executor = getContext().actorOf(Props.create(ExecuterActor.class));
-            
+            getContext().watch(executor);
             routees.add()
         }
     }
