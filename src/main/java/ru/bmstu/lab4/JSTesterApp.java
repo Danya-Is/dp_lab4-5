@@ -8,7 +8,7 @@ import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.util.Timeout;
 import main.java.ru.bmstu.lab4.Messages.GetRequest;
-import main.java.ru.bmstu.lab4.Messages.PostRequest;
+import scala.concurrent.Future;
 
 import java.time.Duration;
 
@@ -32,7 +32,7 @@ public class JSTesterApp {
     private Route createRoute() {
         return JSTesterApp(
                 get(() -> parameter("packageID", (id) -> {
-                    Patterns.ask(router, new GetRequest(Integer.parseInt(id)), Timeout.create(Duration.ofSeconds(5)));
+                    Future<Object> res = Patterns.ask(router, new GetRequest(Integer.parseInt(id)), Timeout.create(Duration.ofSeconds(5)));
                 })),
                 post(() -> {
 
