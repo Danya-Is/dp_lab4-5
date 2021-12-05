@@ -12,8 +12,11 @@ public class StorageActor  extends AbstractActor {
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
-                .match(Result.class, msg -> );
+                .match(Result.class, this::addMessage)
+                .build();
     }
 
-    private void addMessage
+    private void addMessage(Result msg) {
+        store.put(msg.getPackageID(), msg.getValue());
+    }
 }
