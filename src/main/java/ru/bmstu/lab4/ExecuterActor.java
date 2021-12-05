@@ -5,6 +5,7 @@ import akka.japi.pf.ReceiveBuilder;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
 public class ExecuterActor extends AbstractActor {
     @Override
@@ -13,7 +14,8 @@ public class ExecuterActor extends AbstractActor {
                 .match();
     }
 
-    public void execute(PostRequest msg) {
+    public void execute(PostRequest msg) throws ScriptException {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+        engine.eval(msg.getJsScript());
     }
 }

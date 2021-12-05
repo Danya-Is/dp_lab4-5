@@ -18,4 +18,8 @@ public class PostRequest {
         this.functionName = functionName;
         this.tests = tests;
     }
+
+    public String getJsScript() {
+        return jsScript;
+    }
 }
