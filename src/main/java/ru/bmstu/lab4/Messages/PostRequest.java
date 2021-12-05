@@ -3,7 +3,7 @@ package main.java.ru.bmstu.lab4.Messages;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PostRequest {
-    @JsonProperty("packageID")
+    @JsonProperty("packageId")
     private final int packageID;
     @JsonProperty("jsScript")
     private final String jsScript;
