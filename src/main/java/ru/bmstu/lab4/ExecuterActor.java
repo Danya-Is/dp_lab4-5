@@ -12,10 +12,7 @@ public class ExecuterActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
-                .match(Executed.class, executed -> {
-                    execute(executed);
-                    System.out.println("");
-                });
+                .match(Executed.class, this::execute);
     }
 
     public String execute(Executed executed) throws ScriptException, NoSuchMethodException {
