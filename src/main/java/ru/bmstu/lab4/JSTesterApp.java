@@ -3,6 +3,7 @@ package main.java.ru.bmstu.lab4;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.http.javadsl.Http;
+import akka.http.javadsl.marshallers.jackson.Jackson;
 import akka.http.javadsl.server.Route;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
@@ -33,7 +34,7 @@ public class JSTesterApp {
         return JSTesterApp(
                 get(() -> parameter("packageID", (id) -> {
                     Future<Object> res = Patterns.ask(router, new GetRequest(Integer.parseInt(id)), Timeout.create(Duration.ofSeconds(5)));
-                    
+                    return completeOKWithFuture(res, Jackson.marshaller());
                 })),
                 post(() -> {
 
