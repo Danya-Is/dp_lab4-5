@@ -4,6 +4,7 @@ public class Executed {
     private final int packageID;
     private final String jsScript;
     private final String functionName;
+    private final float expectedResult;
     private final int[] params;
 
     public Executed(int packageID, String jsScript, String functionName, int[] params) {
