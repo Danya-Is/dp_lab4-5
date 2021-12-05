@@ -14,7 +14,7 @@ public class StorageActor  extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder.create()
                 .match(Result.class, this::storeMessage)
-                .match(GetRequest.class, )
+                .match(GetRequest.class, msg -> sender().tell(new Response(msg.getPackageID(), storage.get(msg.getPackageID())), getContext().getParent()))
                 .build();
     }
 
