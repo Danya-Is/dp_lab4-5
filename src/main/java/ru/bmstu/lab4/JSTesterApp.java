@@ -4,6 +4,7 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.server.Route;
+import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 
 import static akka.http.javadsl.server.Directives.*;
@@ -26,7 +27,7 @@ public class JSTesterApp {
     private Route createRoute() {
         return JSTesterApp(
                 get(() -> parameter("packageID", (id) -> {
-                    
+                    Patterns.ask()
                 })),
                 post(() -> {
 
