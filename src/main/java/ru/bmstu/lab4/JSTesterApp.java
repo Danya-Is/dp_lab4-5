@@ -41,7 +41,7 @@ public class JSTesterApp {
         CompletionStage<ServerBinding> stage = http.bindAndHandle(flow, ConnectHttp.toHost("127.0.0.1", 8000), materializer);
         System.out.println("Listening on :8000...");
 
-        stage.thenCompose()
+        stage.thenCompose(ServerBinding::unbind).thenAccept()
 
     }
 
