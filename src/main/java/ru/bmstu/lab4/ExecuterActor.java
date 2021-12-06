@@ -23,7 +23,7 @@ public class ExecuterActor extends AbstractActor {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
         engine.eval(executed.getJsScript());
         Invocable invocable = (Invocable) engine;
-        String result = invocable.invokeFunction(executed.getFunctionName(), executed.getParams()).toString();
+        String result = invocable.invokeFunction(executed.getFunctionName(), executed.getParams().toArray()).toString();
         System.out.println(result);
         return result;
     }
