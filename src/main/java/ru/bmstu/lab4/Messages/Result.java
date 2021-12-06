@@ -1,15 +1,15 @@
 package main.java.ru.bmstu.lab4.Messages;
 
 public class Result {
-    private final int packageID;
+    private final String packageID;
     private final String value;
 
-    public Result(int packageID, String value) {
+    public Result(String packageID, String value) {
         this.value = value;
         this.packageID = packageID;
     }
 
-    public int getPackageID() {
+    public String getPackageID() {
         return packageID;
     }
 

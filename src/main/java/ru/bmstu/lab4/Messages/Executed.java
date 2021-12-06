@@ -3,13 +3,13 @@ package main.java.ru.bmstu.lab4.Messages;
 import java.util.ArrayList;
 
 public class Executed {
-    private final int packageID;
+    private final String packageID;
     private final String jsScript;
     private final String functionName;
     private final String expectedResult;
     private final ArrayList<Integer> params;
 
-    public Executed(int packageID, String jsScript, String functionName, String expectedResult, ArrayList<Integer> params) {
+    public Executed(String packageID, String jsScript, String functionName, String expectedResult, ArrayList<Integer> params) {
         this.packageID = packageID;
         this.jsScript = jsScript;
         this.functionName = functionName;
@@ -17,7 +17,7 @@ public class Executed {
         this.params = params;
     }
 
-    public int getPackageID() {
+    public String getPackageID() {
         return packageID;
     }
 
