@@ -7,9 +7,9 @@ public class Executed {
     private final String jsScript;
     private final String functionName;
     private final String expectedResult;
-    private final ArrayList<Integer> params;
+    private final ArrayList<Object> params;
 
-    public Executed(String packageID, String jsScript, String functionName, String expectedResult, ArrayList<Integer> params) {
+    public Executed(String packageID, String jsScript, String functionName, String expectedResult, ArrayList<Object> params) {
         this.packageID = packageID;
         this.jsScript = jsScript;
         this.functionName = functionName;
@@ -21,7 +21,7 @@ public class Executed {
         return packageID;
     }
 
-    public ArrayList<Integer> getParams() {
+    public ArrayList<Object> getParams() {
         return params;
     }
 

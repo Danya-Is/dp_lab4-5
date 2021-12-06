@@ -10,17 +10,17 @@ public class Test {
     @JsonProperty("expectedResult")
     private final String expectedResult;
     @JsonProperty("params")
-    private final ArrayList<Integer> params;
+    private final ArrayList<Object> params;
 
     public Test(@JsonProperty("testName") String testName,
                 @JsonProperty("expectedResult") String expectedResult,
-                @JsonProperty("params") ArrayList<Integer> params) {
+                @JsonProperty("params") ArrayList<Object> params) {
         this.testName = testName;
         this.expectedResult = expectedResult;
         this.params = params;
     }
 
-    public ArrayList<Integer> getParams() {
+    public ArrayList<Object> getParams() {
         return params;
     }
 
