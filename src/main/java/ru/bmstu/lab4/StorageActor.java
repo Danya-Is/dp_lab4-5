@@ -23,6 +23,7 @@ public class StorageActor  extends AbstractActor {
     }
 
     private void storeMessage(Result msg) {
+        System.out.println(storage);
         ArrayList<String> results = storage.get(msg.getPackageID());
         if (results == null) {
             results = new ArrayList<>();
