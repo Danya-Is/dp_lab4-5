@@ -34,7 +34,7 @@ public class StorageActor  extends AbstractActor {
         } else {
             result += "Unexpected result";
         }
-        results.add(msg.getValue());
+        results.add(result);
         storage.put(msg.getPackageID(), results);
     }
 }
