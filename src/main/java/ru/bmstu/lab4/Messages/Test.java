@@ -12,7 +12,9 @@ public class Test {
     @JsonProperty("params")
     private final ArrayList<Integer> params;
 
-    public Test(String testName, String expectedResult, ArrayList<Integer> params) {
+    public Test(@JsonProperty("testName") String testName,
+                @JsonProperty("expectedResult") String expectedResult,
+                @JsonProperty("params") ArrayList<Integer> params) {
         this.testName = testName;
         this.expectedResult = expectedResult;
         this.params = params;
