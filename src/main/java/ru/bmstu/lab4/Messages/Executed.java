@@ -1,13 +1,15 @@
 package main.java.ru.bmstu.lab4.Messages;
 
+import java.util.ArrayList;
+
 public class Executed {
     private final int packageID;
     private final String jsScript;
     private final String functionName;
-    private final float expectedResult;
-    private final int[] params;
+    private final String expectedResult;
+    private final ArrayList<Integer> params;
 
-    public Executed(int packageID, String jsScript, String functionName, float expectedResult, int[] params) {
+    public Executed(int packageID, String jsScript, String functionName, String expectedResult, ArrayList<Integer> params) {
         this.packageID = packageID;
         this.jsScript = jsScript;
         this.functionName = functionName;
@@ -19,7 +21,7 @@ public class Executed {
         return packageID;
     }
 
-    public int[] getParams() {
+    public ArrayList<Integer> getParams() {
         return params;
     }
 
