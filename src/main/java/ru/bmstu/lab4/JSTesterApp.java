@@ -19,6 +19,7 @@ import main.java.ru.bmstu.lab4.Messages.GetRequest;
 import main.java.ru.bmstu.lab4.Messages.PostRequest;
 import scala.concurrent.Future;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.concurrent.CompletionStage;
 
@@ -32,7 +33,7 @@ public class JSTesterApp {
         this.router = router;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ActorSystem actorSystem = ActorSystem.create("lab4");
         final Http http = Http.get(actorSystem);
         final ActorMaterializer materializer = ActorMaterializer.create(actorSystem);
@@ -40,6 +41,7 @@ public class JSTesterApp {
         Flow<HttpRequest, HttpResponse, NotUsed> flow = instance.createRoute().flow(actorSystem, materializer);
         CompletionStage<ServerBinding> stage = http.bindAndHandle(flow, ConnectHttp.toHost("127.0.0.1", 8888), materializer);
         System.out.println("Listening on :8888...");
+        System.in.read();
 
         stage.thenCompose(ServerBinding::unbind).thenAccept(unbound -> actorSystem.terminate());
 
