@@ -1,13 +1,13 @@
 package main.java.ru.bmstu.lab4.Messages;
 
 public class GetRequest {
-    private final int packageId;
+    private final String packageId;
 
-    public GetRequest(int packageId) {
+    public GetRequest(String packageId) {
         this.packageId = packageId;
     }
 
-    public int getPackageID() {
+    public String getPackageID() {
         return packageId;
     }
 }

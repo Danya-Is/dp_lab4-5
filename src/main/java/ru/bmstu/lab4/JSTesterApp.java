@@ -50,7 +50,7 @@ public class JSTesterApp {
     private Route createRoute() {
         return route(
                 get(() -> parameter("packageId", (id) -> {
-                    Future<Object> res = Patterns.ask(router, new GetRequest(Integer.parseInt(id)), Timeout.create(Duration.ofSeconds(5)));
+                    Future<Object> res = Patterns.ask(router, new GetRequest(id), Timeout.create(Duration.ofSeconds(5)));
                     return completeOKWithFuture(res, Jackson.marshaller());
                 })),
                 post(() -> entity(Jackson.unmarshaller(PostRequest.class), msg -> {
