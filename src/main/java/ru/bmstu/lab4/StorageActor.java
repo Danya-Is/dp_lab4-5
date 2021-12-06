@@ -1,6 +1,7 @@
 package main.java.ru.bmstu.lab4;
 
 import akka.actor.AbstractActor;
+import akka.actor.ActorRef;
 import akka.japi.pf.ReceiveBuilder;
 import main.java.ru.bmstu.lab4.Messages.GetRequest;
 import main.java.ru.bmstu.lab4.Messages.Response;
@@ -17,7 +18,7 @@ public class StorageActor  extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder.create()
                 .match(Result.class, this::storeMessage)
-                .match(GetRequest.class, msg -> sender().tell(new Response(msg.getPackageID(), storage.get(msg.getPackageID())), getContext().getParent()))
+                .match(GetRequest.class, msg -> sender().tell(new Response(msg.getPackageID(), storage.get(msg.getPackageID())), ActorRef.noSender()))
                 .build();
     }
 
