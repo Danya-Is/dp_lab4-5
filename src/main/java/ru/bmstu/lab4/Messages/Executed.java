@@ -6,13 +6,15 @@ public class Executed {
     private final String packageID;
     private final String jsScript;
     private final String functionName;
+    private final String testName;
     private final String expectedResult;
     private final ArrayList<Object> params;
 
-    public Executed(String packageID, String jsScript, String functionName, String expectedResult, ArrayList<Object> params) {
+    public Executed(String packageID, String jsScript, String functionName, String testName, String expectedResult, ArrayList<Object> params) {
         this.packageID = packageID;
         this.jsScript = jsScript;
         this.functionName = functionName;
+        this.testName = testName;
         this.expectedResult = expectedResult;
         this.params = params;
     }
@@ -27,6 +29,14 @@ public class Executed {
 
     public String getFunctionName() {
         return functionName;
+    }
+
+    public String getTestName() {
+        return testName;
+    }
+
+    public String getExpectedResult() {
+        return expectedResult;
     }
 
     public String getJsScript() {

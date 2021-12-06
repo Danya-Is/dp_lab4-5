@@ -28,6 +28,12 @@ public class StorageActor  extends AbstractActor {
         if (results == null) {
             results = new ArrayList<>();
         }
+        String result = msg.getTestName() + ": ";
+        if (msg.getValue() == msg.getExpectedResult()) {
+            result += "OK";
+        } else {
+            result += "Unexpected result";
+        }
         results.add(msg.getValue());
         storage.put(msg.getPackageID(), results);
     }

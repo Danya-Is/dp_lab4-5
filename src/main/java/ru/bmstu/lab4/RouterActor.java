@@ -44,7 +44,7 @@ public class RouterActor extends AbstractActor {
 
     private void executeTests(PostRequest msg) {
         for (Test test : msg.getTests()) {
-            router.route(new Executed(msg.getPackageID(), msg.getJsScript(), msg.getFunctionName(), test.getExpectedResult(), test.getParams()), storage);
+            router.route(new Executed(msg.getPackageID(), msg.getJsScript(), msg.getFunctionName(), test.getTestName(), test.getExpectedResult(), test.getParams()), storage);
         }
     }
 }

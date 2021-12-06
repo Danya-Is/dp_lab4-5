@@ -9,13 +9,12 @@ import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-import java.util.ArrayList;
 
 public class ExecuterActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
-                .match(Executed.class, msg -> sender().tell(new Result(msg.getPackageID(), execute(msg)), self()))
+                .match(Executed.class, msg -> sender().tell(new Result(msg.getPackageID(), msg.getTestName(), msg.getExpectedResult(), execute(msg)), self()))
                 .build();
     }
 
