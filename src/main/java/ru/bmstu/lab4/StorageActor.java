@@ -33,7 +33,9 @@ public class StorageActor  extends AbstractActor {
         if (results == null) {
             results = new HashMap<>();
         }
-        String result = msg.getTestName() + ": ";
+        String result = "";
+        System.out.println("Value = " + msg.getValue());
+        System.out.println("Expected value = " + msg.getExpectedResult());
         if (msg.getValue() == msg.getExpectedResult()) {
             result += "OK";
         } else {
