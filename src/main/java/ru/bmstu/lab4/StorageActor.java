@@ -12,7 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StorageActor  extends AbstractActor {
-    private final Map<String, ArrayList<String>> storage = new HashMap<>();
+    private final Map<String, Map<String, String>> storage = new HashMap<>();
+
+    private static class TestResult {
+        String testName;
+        String result;
+    }
 
     @Override
     public Receive createReceive() {
@@ -24,9 +29,9 @@ public class StorageActor  extends AbstractActor {
 
     private void storeMessage(Result msg) {
         System.out.println(storage);
-        ArrayList<String> results = storage.get(msg.getPackageID());
+        Map<String, String> results = storage.get(msg.getPackageID());
         if (results == null) {
-            results = new ArrayList<>();
+            results = new HashMap<>();
         }
         String result = msg.getTestName() + ": ";
         if (msg.getValue() == msg.getExpectedResult()) {
@@ -34,7 +39,7 @@ public class StorageActor  extends AbstractActor {
         } else {
             result += "Unexpected result";
         }
-        results.add(result);
+        results.put(msg.getTestName(), result);
         storage.put(msg.getPackageID(), results);
     }
 }
