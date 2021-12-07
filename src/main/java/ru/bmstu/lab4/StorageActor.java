@@ -10,6 +10,7 @@ import main.java.ru.bmstu.lab4.Messages.Result;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class StorageActor  extends AbstractActor {
     private final Map<String, Map<String, String>> storage = new HashMap<>();
@@ -36,7 +37,7 @@ public class StorageActor  extends AbstractActor {
         String result = "";
         System.out.println("Value = " + msg.getValue());
         System.out.println("Expected value = " + msg.getExpectedResult());
-        if (msg.getValue() == msg.getExpectedResult()) {
+        if (Objects.equals(msg.getValue(), msg.getExpectedResult())) {
             result += "OK";
         } else {
             result += "Unexpected result";
