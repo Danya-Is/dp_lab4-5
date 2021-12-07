@@ -29,14 +29,11 @@ public class StorageActor  extends AbstractActor {
     }
 
     private void storeMessage(Result msg) {
-        System.out.println(storage);
         Map<String, String> results = storage.get(msg.getPackageID());
         if (results == null) {
             results = new HashMap<>();
         }
         String result = "";
-        System.out.println("Value = " + msg.getValue());
-        System.out.println("Expected value = " + msg.getExpectedResult());
         if (Objects.equals(msg.getValue(), msg.getExpectedResult())) {
             result += "OK";
         } else {
