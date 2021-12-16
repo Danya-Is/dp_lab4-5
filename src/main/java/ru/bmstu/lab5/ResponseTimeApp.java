@@ -74,5 +74,6 @@ public class ResponseTimeApp {
                     long executeTime = System.currentTimeMillis() - startTime;
                     return CompletableFuture.completedFuture(executeTime);
                 })
+                .toMat(fold, )
     }
 }
