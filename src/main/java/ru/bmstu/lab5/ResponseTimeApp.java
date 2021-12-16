@@ -7,6 +7,7 @@ import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.model.Query;
 import akka.japi.Pair;
+import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 
@@ -35,7 +36,7 @@ public class ResponseTimeApp {
                     return new Pair<String, Integer>(url, count);
                 })
                 .mapAsync(4, pair -> {
-
+                    Patterns.ask()
                 })
     }
 }
