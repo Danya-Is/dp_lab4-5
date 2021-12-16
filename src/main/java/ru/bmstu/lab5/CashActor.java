@@ -14,7 +14,7 @@ public class CashActor extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder.create()
                 .match(String.class, msg -> sender().tell(cash.getOrDefault(msg, -1f), ActorRef.noSender()))
-
+                .match(Response.class, msg -> cash.put(msg.getUrl(), msg.getAverageResponseTime()))
                 .build();
     }
 }
