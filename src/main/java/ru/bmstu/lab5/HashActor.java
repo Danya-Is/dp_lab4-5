@@ -1,4 +1,10 @@
 package ru.bmstu.lab5;
 
-public class HashActor {
+import akka.actor.AbstractActor;
+
+public class HashActor extends AbstractActor {
+    @Override
+    public Receive createReceive() {
+        return null;
+    }
 }
