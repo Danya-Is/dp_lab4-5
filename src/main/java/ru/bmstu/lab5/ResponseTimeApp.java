@@ -66,12 +66,13 @@ public class ResponseTimeApp {
                         return Source.from(Collections.singletonList(pair))
                                 .toMat(createSink(), Keep.right())
                                 .run(actorMaterializer)
-                    })
-
-                })
+                                .thenApply(t -> new Pair<>(pair.first(), (float)time/pair.second()));
+                    });
+                }))
+                .map()
     }
 
-    private static Sink createSink() {
+    private static Sink<Pair<String, Integer>, CompletionStage<Long>> createSink() {
         return Flow.<Pair<String, Integer>>create()
                 .mapConcat(pair -> Collections.nCopies(pair.second(), pair.first()))
                 .mapAsync(4, url -> {
