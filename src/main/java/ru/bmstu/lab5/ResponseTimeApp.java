@@ -4,7 +4,12 @@ import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
+import akka.event.Logging;
+import akka.event.LoggingAdapter;
+import akka.http.javadsl.ConnectHttp;
 import akka.http.javadsl.Http;
+import akka.http.javadsl.ServerBinding;
+import akka.http.javadsl.model.HttpEntities;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.model.Query;
@@ -12,13 +17,20 @@ import akka.japi.Pair;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
+
+import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
+import akka.stream.javadsl.Source;
 import akka.util.Timeout;
 import org.asynchttpclient.AsyncHttpClient;
 import static org.asynchttpclient.Dsl.asyncHttpClient;
 
-import java.time.Duration;
-import java.util.Collections;
 
 public class ResponseTimeApp {
     public static final String STARTED = "Started";
@@ -47,7 +59,7 @@ public class ResponseTimeApp {
                     return new Pair<>(url, count);
                 })
                 .mapAsync(4, (Pair<String, Integer> p) -> {
-                    Patterns.ask(casher, p.first(), Timeout.create(Duration.ofSeconds(5))).thenCom
+                    Patterns.ask(casher, p.first(), Timeout.create(Duration.ofSeconds(5))).the
 
                 })
     }
