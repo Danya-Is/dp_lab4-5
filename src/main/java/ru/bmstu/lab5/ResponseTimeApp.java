@@ -68,7 +68,7 @@ public class ResponseTimeApp {
                             .thenApply(t -> new Pair<>(pair.first(), (float)time/pair.second()));
                 })))
                 .map(result -> {
-
+                    
                 })
     }
 
