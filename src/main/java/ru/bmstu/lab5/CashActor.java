@@ -1,15 +1,17 @@
 package ru.bmstu.lab5;
 
 import akka.actor.AbstractActor;
+import akka.japi.pf.ReceiveBuilder;
 
 import java.util.HashMap;
 
-public class HashActor extends AbstractActor {
+public class CashActor extends AbstractActor {
 
-    private HashMap<String, Float> 
+    private HashMap<String, Float> cash = new HashMap<>();
 
     @Override
     public Receive createReceive() {
-        return null;
+        return ReceiveBuilder.create()
+                .match(String.class, msg -> sender().tell())
     }
 }
