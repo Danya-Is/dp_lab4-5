@@ -15,6 +15,7 @@ import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Sink;
 import akka.util.Timeout;
 import org.asynchttpclient.AsyncHttpClient;
+import static org.asynchttpclient.Dsl.asyncHttpClient;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -54,7 +55,7 @@ public class ResponseTimeApp {
         Flow.<Pair<String, Integer>>create()
                 .mapConcat(pair -> Collections.nCopies(pair.second(), pair.first()))
                 .mapAsync(4, url -> {
-                    AsyncHttpClient client = asy
+                    AsyncHttpClient client = asyncHttpClient()
                 })
     }
 }
