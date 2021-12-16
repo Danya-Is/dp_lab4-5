@@ -54,7 +54,7 @@ public class ResponseTimeApp {
         Flow.<Pair<String, Integer>>create()
                 .mapConcat(pair -> Collections.nCopies(pair.second(), pair.first()))
                 .mapAsync(4, url -> {
-                    AsyncHttpClient client = 
+                    AsyncHttpClient client = asy
                 })
     }
 }
