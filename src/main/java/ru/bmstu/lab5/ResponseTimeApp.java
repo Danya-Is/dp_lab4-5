@@ -50,6 +50,8 @@ public class ResponseTimeApp {
 
     private static Sink createSink() {
         Flow.<Pair<String, Integer>>create()
-                .mapConcat()
+                .mapConcat(pair -> {
+                    
+                })
     }
 }
