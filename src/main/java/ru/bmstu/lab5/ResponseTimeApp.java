@@ -14,6 +14,7 @@ public class ResponseTimeApp {
     public static final String TEST_URL = "testUrl";
     public static final String LOCALHOST = "localhost";
     public static final String COUNT = "count";
+    public static final String DEFAULT_COUNT = "1";
 
     public static void main(String[] args) {
         System.out.println(STARTED);
@@ -29,7 +30,7 @@ public class ResponseTimeApp {
                 .map(request -> {
                     Query query = request.getUri().query();
                     String url = query.get(TEST_URL).orElse(LOCALHOST);
-                    int count = Integer.parseInt(query.get(COUNT).orElse("1"));
+                    int count = Integer.parseInt(query.get(COUNT).orElse(DEFAULT_COUNT));
                 })
     }
 }
