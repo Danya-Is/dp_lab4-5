@@ -21,6 +21,7 @@ public class ResponseTimeApp {
     }
 
     private static Flow<HttpRequest, HttpResponse, NotUsed> createFlow(ActorSystem actorSystem, ActorMaterializer actorMaterializer) {
-        
+        return Flow.of(HttpRequest.class)
+                .map()
     }
 }
