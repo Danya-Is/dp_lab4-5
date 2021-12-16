@@ -67,7 +67,7 @@ public class ResponseTimeApp {
                                 .toMat(createSink(), Keep.right())
                                 .run(actorMaterializer)
                                 .thenApply(t -> new Pair<>(pair.first(), (float)time/pair.second()));
-                    });
+                    })
                 }))
                 .map()
     }
