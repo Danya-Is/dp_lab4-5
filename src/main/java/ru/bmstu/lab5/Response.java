@@ -1,4 +1,4 @@
-package ru.bmstu.lab5;
+package main.java.ru.bmstu.lab5;
 
 public class Response {
     private String url;
