@@ -23,7 +23,7 @@ public class ResponseTimeApp {
     private static Flow<HttpRequest, HttpResponse, NotUsed> createFlow(ActorSystem actorSystem, ActorMaterializer actorMaterializer) {
         return Flow.of(HttpRequest.class)
                 .map(request -> {
-                    request.getUri().query();
+                    request.getUri().query().getOrElse();
                 })
     }
 }
