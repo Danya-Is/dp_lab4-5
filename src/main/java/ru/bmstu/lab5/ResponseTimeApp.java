@@ -18,6 +18,7 @@ import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,15 +40,24 @@ public class ResponseTimeApp {
     public static final String COUNT = "count";
     public static final String DEFAULT_COUNT = "1";
     public static final String CASHER = "casher";
+    public static final int PORT = 8888;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println(STARTED);
         ActorSystem actorSystem = ActorSystem.create("routes");
         ActorRef casher = actorSystem.actorOf(Props.create(CashActor.class), CASHER);
         final Http http = Http.get(actorSystem);
         final ActorMaterializer actorMaterializer = ActorMaterializer.create(actorSystem);
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = createFlow(casher, actorMaterializer);
+        final CompletionStage<ServerBinding> binding = http.bindAndHandle(
+                routeFlow,
+                ConnectHttp.toHost(LOCALHOST, PORT),
+                actorMaterializer
+        );
+        System.out.println("Listening...  " + PORT);
+        System.in.read();
 
+        binding.thenCompose(ServerBinding::unbind).thenAccept(unbound -> actorSystem.terminate());
     }
 
     private static Flow<HttpRequest, HttpResponse, NotUsed> createFlow(ActorRef casher, ActorMaterializer actorMaterializer) {
@@ -68,7 +78,8 @@ public class ResponseTimeApp {
                             .thenApply(t -> new Pair<>(pair.first(), (float)time/pair.second()));
                 })))
                 .map(result -> {
-                    
+                    casher.tell(new Response(result.first(), result.second()), ActorRef.noSender());
+                    return HttpResponse.create().withEntity(result.first() + ":" + result.second() + "\n");
                 })
     }
 
