@@ -63,7 +63,8 @@ public class ResponseTimeApp {
                         if ((float) time >= 0) {
                             return CompletableFuture.completedFuture(new Pair<>(pair.first(), (float)time));
                         }
-                        return Source.from(Collections.singletonList())
+                        return Source.from(Collections.singletonList(pair))
+                                .toMat(createSink(), Keep.right())
                     })
 
                 })
