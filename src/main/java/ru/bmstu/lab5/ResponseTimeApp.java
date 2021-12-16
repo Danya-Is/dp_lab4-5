@@ -47,8 +47,7 @@ public class ResponseTimeApp {
                     return new Pair<>(url, count);
                 })
                 .mapAsync(4, pair -> {
-                    Patterns.ask(casher, pair.first(), Timeout.create(Duration.ofSeconds(5)))
-                            .
+                    Patterns.ask(casher, pair.first(), Timeout.create(Duration.ofSeconds(5))).
 
                 })
     }
