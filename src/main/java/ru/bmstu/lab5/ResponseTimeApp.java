@@ -10,6 +10,7 @@ import akka.stream.javadsl.Flow;
 
 public class ResponseTimeApp {
     public static final String STARTED = "Started";
+    public static final String TEST_URL = "testUrl";
 
     public static void main(String[] args) {
         System.out.println(STARTED);
@@ -23,7 +24,7 @@ public class ResponseTimeApp {
     private static Flow<HttpRequest, HttpResponse, NotUsed> createFlow(ActorSystem actorSystem, ActorMaterializer actorMaterializer) {
         return Flow.of(HttpRequest.class)
                 .map(request -> {
-                    request.getUri().query().getOrElse();
+                    request.getUri().query().get(TEST_URL);
                 })
     }
 }
