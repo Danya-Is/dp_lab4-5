@@ -34,5 +34,6 @@ public class ResponseTimeApp {
                     int count = Integer.parseInt(query.get(COUNT).orElse(DEFAULT_COUNT));
                     return new Pair<String, Integer>(url, count);
                 })
+                .mapAsync()
     }
 }
