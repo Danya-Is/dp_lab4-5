@@ -48,7 +48,8 @@ public class ResponseTimeApp {
                 })
                 .mapAsync(4, pair -> {
                     Patterns.ask(casher, pair.first(), Timeout.create(Duration.ofSeconds(5)))
-                            
+                            .
+
                 })
     }
 
@@ -56,7 +57,8 @@ public class ResponseTimeApp {
         Flow.<Pair<String, Integer>>create()
                 .mapConcat(pair -> Collections.nCopies(pair.second(), pair.first()))
                 .mapAsync(4, url -> {
-                    AsyncHttpClient client = asyncHttpClient()
+                    AsyncHttpClient client = asyncHttpClient();
+
                 })
     }
 }
