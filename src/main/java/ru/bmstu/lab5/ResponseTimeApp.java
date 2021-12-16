@@ -6,6 +6,7 @@ import akka.http.javadsl.Http;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.model.Query;
+import akka.japi.Pair;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 
@@ -31,6 +32,7 @@ public class ResponseTimeApp {
                     Query query = request.getUri().query();
                     String url = query.get(TEST_URL).orElse(LOCALHOST);
                     int count = Integer.parseInt(query.get(COUNT).orElse(DEFAULT_COUNT));
+                    return new Pair<String, Integer>(url, count);
                 })
     }
 }
