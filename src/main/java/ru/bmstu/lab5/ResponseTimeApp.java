@@ -19,4 +19,8 @@ public class ResponseTimeApp {
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow
 
     }
+
+    private static Flow<HttpRequest, HttpResponse, NotUsed> createFlow(ActorSystem actorSystem, ActorMaterializer actorMaterializer) {
+        
+    }
 }
