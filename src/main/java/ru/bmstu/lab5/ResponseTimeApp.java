@@ -42,7 +42,7 @@ public class ResponseTimeApp {
                     Query query = request.getUri().query();
                     String url = query.get(TEST_URL).orElse(LOCALHOST);
                     int count = Integer.parseInt(query.get(COUNT).orElse(DEFAULT_COUNT));
-                    return new Pair<String, Integer>(url, count);
+                    return new Pair<>(url, count);
                 })
                 .mapAsync(4, pair -> {
                     Patterns.ask(casher, pair.first(), Timeout.create(Duration.ofSeconds(5))).
@@ -52,6 +52,7 @@ public class ResponseTimeApp {
     private static Sink createSink() {
         Flow.<Pair<String, Integer>>create()
                 .mapConcat(pair -> Collections.nCopies(pair.second(), pair.first()))
-                .mapAsync()
+                .mapAsync(4, pair -> {
+                })
     }
 }
