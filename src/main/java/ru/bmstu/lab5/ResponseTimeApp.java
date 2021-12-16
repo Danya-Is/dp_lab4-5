@@ -67,7 +67,7 @@ public class ResponseTimeApp {
                             .run(actorMaterializer)
                             .thenApply(t -> new Pair<>(pair.first(), (float)time/pair.second()));
                 })))
-                .map()
+                .map(result -> )
     }
 
     private static Sink<Pair<String, Integer>, CompletionStage<Long>> createSink() {
