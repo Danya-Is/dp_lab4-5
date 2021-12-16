@@ -35,7 +35,7 @@ public class ResponseTimeApp {
                     return new Pair<String, Integer>(url, count);
                 })
                 .mapAsync(4, pair -> {
-                    
+
                 })
     }
 }
