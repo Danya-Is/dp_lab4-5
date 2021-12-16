@@ -58,14 +58,16 @@ public class ResponseTimeApp {
                     int count = Integer.parseInt(query.get(COUNT).orElse(DEFAULT_COUNT));
                     return new Pair<>(url, count);
                 })
-                .mapAsync(4, (Pair<String, Integer> p) -> {
-                    Patterns.ask(casher, p.first(), Duration.ofSeconds(5)).thenCompose()
+                .mapAsync(4, (pair -> {
+                    Patterns.ask(casher, pair.first(), Duration.ofSeconds(5)).thenCompose(time -> {
+
+                    })
 
                 })
     }
 
     private static Sink createSink() {
-        Flow.<Pair<String, Integer>>create()
+        return Flow.<Pair<String, Integer>>create()
                 .mapConcat(pair -> Collections.nCopies(pair.second(), pair.first()))
                 .mapAsync(4, url -> {
                     AsyncHttpClient client = asyncHttpClient();
@@ -74,6 +76,6 @@ public class ResponseTimeApp {
                     long executeTime = System.currentTimeMillis() - startTime;
                     return CompletableFuture.completedFuture(executeTime);
                 })
-                .toMat(Sink.fold(0L, Long::sum), )
+                .toMat(Sink.fold(0L, Long::sum), Keep.right());
     }
 }
