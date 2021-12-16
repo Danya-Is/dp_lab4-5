@@ -59,7 +59,7 @@ public class ResponseTimeApp {
                     return new Pair<>(url, count);
                 })
                 .mapAsync(4, (Pair<String, Integer> p) -> {
-                    Patterns.ask(casher, p.first(), Timeout.create(Duration.ofSeconds(5))).the
+                    Patterns.ask(casher, p.first(), Timeout.create(Duration.ofSeconds(5)))
 
                 })
     }
