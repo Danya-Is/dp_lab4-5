@@ -1,4 +1,4 @@
-package main.java.ru.bmstu.lab5;
+package ru.bmstu.lab5;
 
 import akka.NotUsed;
 import akka.actor.ActorRef;
