@@ -12,6 +12,7 @@ import akka.japi.Pair;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import akka.stream.javadsl.Sink;
 import akka.util.Timeout;
 
 import java.time.Duration;
@@ -47,5 +48,7 @@ public class ResponseTimeApp {
                 })
     }
 
-    private static 
+    private static Sink createSink() {
+        
+    }
 }
