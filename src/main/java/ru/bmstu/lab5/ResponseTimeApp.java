@@ -46,8 +46,8 @@ public class ResponseTimeApp {
                     int count = Integer.parseInt(query.get(COUNT).orElse(DEFAULT_COUNT));
                     return new Pair<>(url, count);
                 })
-                .mapAsync(4, pair -> {
-                    Patterns.ask(casher, pair.first(), Timeout.create(Duration.ofSeconds(5))).
+                .mapAsync(4, (Pair<String, Integer> p) -> {
+                    Patterns.ask(casher, p.first(), Timeout.create(Duration.ofSeconds(5))).thenCom
 
                 })
     }
