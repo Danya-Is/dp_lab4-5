@@ -14,6 +14,7 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Sink;
 import akka.util.Timeout;
+import org.asynchttpclient.AsyncHttpClient;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -52,7 +53,8 @@ public class ResponseTimeApp {
     private static Sink createSink() {
         Flow.<Pair<String, Integer>>create()
                 .mapConcat(pair -> Collections.nCopies(pair.second(), pair.first()))
-                .mapAsync(4, pair -> {
+                .mapAsync(4, url -> {
+                    AsyncHttpClient client = 
                 })
     }
 }
