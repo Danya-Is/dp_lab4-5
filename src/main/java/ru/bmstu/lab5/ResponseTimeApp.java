@@ -58,17 +58,15 @@ public class ResponseTimeApp {
                     int count = Integer.parseInt(query.get(COUNT).orElse(DEFAULT_COUNT));
                     return new Pair<>(url, count);
                 })
-                .mapAsync(4, (pair -> {
-                    Patterns.ask(casher, pair.first(), Duration.ofSeconds(5)).thenCompose(time -> {
-                        if ((float) time >= 0) {
-                            return CompletableFuture.completedFuture(new Pair<>(pair.first(), (float)time));
-                        }
-                        return Source.from(Collections.singletonList(pair))
-                                .toMat(createSink(), Keep.right())
-                                .run(actorMaterializer)
-                                .thenApply(t -> new Pair<>(pair.first(), (float)time/pair.second()));
-                    })
-                }))
+                .mapAsync(4, (pair -> Patterns.ask(casher, pair.first(), Duration.ofSeconds(5)).thenCompose(time -> {
+                    if ((float) time >= 0) {
+                        return CompletableFuture.completedFuture(new Pair<>(pair.first(), (float)time));
+                    }
+                    return Source.from(Collections.singletonList(pair))
+                            .toMat(createSink(), Keep.right())
+                            .run(actorMaterializer)
+                            .thenApply(t -> new Pair<>(pair.first(), (float)time/pair.second()));
+                })))
                 .map()
     }
 
