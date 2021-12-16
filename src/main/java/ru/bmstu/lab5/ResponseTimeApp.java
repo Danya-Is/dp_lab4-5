@@ -59,7 +59,7 @@ public class ResponseTimeApp {
                     return new Pair<>(url, count);
                 })
                 .mapAsync(4, (Pair<String, Integer> p) -> {
-                    Patterns.ask(casher, p.first(), Timeout.create(Duration.ofSeconds(5)))
+                    Patterns.ask(casher, p.first(), Duration.ofSeconds(5)).thenCompose()
 
                 })
     }
@@ -69,7 +69,10 @@ public class ResponseTimeApp {
                 .mapConcat(pair -> Collections.nCopies(pair.second(), pair.first()))
                 .mapAsync(4, url -> {
                     AsyncHttpClient client = asyncHttpClient();
-
+                    long startTime = System.currentTimeMillis();
+                    client.prepareGet(url).execute();
+                    long executeTime = System.currentTimeMillis() - startTime;
+                    return CompletableFuture.completedFuture(executeTime);
                 })
     }
 }
