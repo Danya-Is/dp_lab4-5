@@ -16,6 +16,7 @@ import akka.stream.javadsl.Sink;
 import akka.util.Timeout;
 
 import java.time.Duration;
+import java.util.Collections;
 
 public class ResponseTimeApp {
     public static final String STARTED = "Started";
@@ -50,8 +51,7 @@ public class ResponseTimeApp {
 
     private static Sink createSink() {
         Flow.<Pair<String, Integer>>create()
-                .mapConcat(pair -> {
-                    
-                })
+                .mapConcat(pair -> Collections.nCopies(pair.second(), pair.first()))
+                .mapAsync()
     }
 }
