@@ -60,7 +60,9 @@ public class ResponseTimeApp {
                 })
                 .mapAsync(4, (pair -> {
                     Patterns.ask(casher, pair.first(), Duration.ofSeconds(5)).thenCompose(time -> {
-                        
+                        if ((float) time >= 0) {
+                            
+                        }
                     })
 
                 })
