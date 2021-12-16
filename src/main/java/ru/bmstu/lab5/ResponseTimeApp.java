@@ -80,7 +80,7 @@ public class ResponseTimeApp {
                 .map(result -> {
                     casher.tell(new Response(result.first(), result.second()), ActorRef.noSender());
                     return HttpResponse.create().withEntity(result.first() + ":" + result.second() + "\n");
-                })
+                });
     }
 
     private static Sink<Pair<String, Integer>, CompletionStage<Long>> createSink() {
