@@ -65,6 +65,7 @@ public class ResponseTimeApp {
                         }
                         return Source.from(Collections.singletonList(pair))
                                 .toMat(createSink(), Keep.right())
+                                .run(actorMaterializer)
                     })
 
                 })
