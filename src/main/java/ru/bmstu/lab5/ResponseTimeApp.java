@@ -81,7 +81,7 @@ public class ResponseTimeApp {
     private static Sink<Pair<String, Integer>, CompletionStage<Long>> createSink() {
         return Flow.<Pair<String, Integer>>create()
                 .mapConcat(pair -> Collections.nCopies(pair.second(), pair.first()))
-                .mapAsync(4, url -> {
+                .mapAsync(, url -> {
                     AsyncHttpClient client = asyncHttpClient();
                     long startTime = System.currentTimeMillis();
                     client.prepareGet(url).execute();
