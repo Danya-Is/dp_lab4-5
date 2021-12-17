@@ -68,20 +68,20 @@ public class ResponseTimeApp {
                         return CompletableFuture.completedFuture(new Pair<>(pair.first(), (float)time));
                     }
                     return Source.from(Collections.singletonList(pair))
-                            .toMat(createSink(), Keep.right())
+                            .toMat(createSink(pair.second()), Keep.right())
                             .run(actorMaterializer)
-                            .thenApply(t -> new Pair<>(pair.first(), (float)time/pair.second()));
+                            .thenApply(t -> new Pair<>(pair.first(), (float)t/pair.second()));
                 })))
                 .map(result -> {
                     casher.tell(new Response(result.first(), result.second()), ActorRef.noSender());
-                    return HttpResponse.create().withEntity(result.first() + ":" + result.second() + "\n");
+                    return HttpResponse.create().withEntity("RESULT " + result.first() + ": " + result.second() + "\n");
                 });
     }
 
-    private static Sink<Pair<String, Integer>, CompletionStage<Long>> createSink() {
+    private static Sink<Pair<String, Integer>, CompletionStage<Long>> createSink(int copiesAmount) {
         return Flow.<Pair<String, Integer>>create()
                 .mapConcat(pair -> Collections.nCopies(pair.second(), pair.first()))
-                .mapAsync(4, url -> {
+                .mapAsync(copiesAmount, url -> {
                     AsyncHttpClient client = asyncHttpClient();
                     long startTime = System.currentTimeMillis();
                     client.prepareGet(url).execute();

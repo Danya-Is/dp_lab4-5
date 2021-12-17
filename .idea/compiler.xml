@@ -7,9 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="dp_lab4" />
+        <module name="akka-labs" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="akka-labs" target="1.8" />
       <module name="dp_lab4" target="1.8" />
     </bytecodeTargetLevel>
   </component>
