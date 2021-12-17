@@ -78,7 +78,7 @@ public class ResponseTimeApp {
                 });
     }
 
-    private static Sink<Pair<String, Integer>, CompletionStage<Long>> createSink() {
+    private static Sink<Pair<String, Integer>, CompletionStage<Long>> createSink(int copiesAmount) {
         return Flow.<Pair<String, Integer>>create()
                 .mapConcat(pair -> Collections.nCopies(pair.second(), pair.first()))
                 .mapAsync(, url -> {
